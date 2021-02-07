@@ -6,5 +6,3 @@ def maxPrice(prices):
 
     return max_profit
 
-def maxPrice(price):
-    minimum
