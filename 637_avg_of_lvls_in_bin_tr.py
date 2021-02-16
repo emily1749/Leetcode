@@ -1,32 +1,25 @@
+
 # Definition for a binary tree node.
 # class TreeNode(object):
 #     def __init__(self, val=0, left=None, right=None):
 #         self.val = val
 #         self.left = left
 #         self.right = right
-
-import collections
 class Solution(object):
-    def rightSideView(self, root):
+    def averageOfLevels(self, root):
         """
         :type root: TreeNode
-        :rtype: List[int]
+        :rtype: List[float]
         """
-        
-        if root == None: return root
-        
-        queue = collections.deque()
-        level = collections.deque()
-        queue.append(root)
-        result = []
+        queue, result = collections.deque([root]), []
         while queue:
-            result.append(queue[len(queue)-1].val)
-            level = queue
-            level_length = len(level)
-            queue = deque([])
+            level_length = len(queue)
+            sum = 0
             for i in range(level_length):
-                current = level.popleft()
+                current = queue.popleft()
+                sum+=current.val
                 if current.left: queue.append(current.left)
                 if current.right: queue.append(current.right)
-            
+            result.append(sum/float(level_length))
+        
         return result
